@@ -1,0 +1,13 @@
+<h1>New Idea</h1>
+
+<div class="row">
+    <%= form_for(@idea) do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+      
+      <%= f.submit "Create idea", class: "btn btn-primary" %>
+    <% end %>
+</div>
