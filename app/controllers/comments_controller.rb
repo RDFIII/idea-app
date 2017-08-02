@@ -12,11 +12,16 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comments_params)
     @comment.user_id = current_user.id
     @comment.save
-    redirect_to "/"
+    if @comment.commentable_type == "Comment"
+      redirect_to "/ideas/#{params[:comment][:parent_id]}##{@comment.id}"
+    elsif @comment.commentable_type == "Idea"
+      redirect_to "/ideas/#{@comment.commentable_id}##{@comment.id}"
+    end
   end
 
   def comments_params
     params.require(:comment).permit(:text, :commentable_type, :commentable_id)
   end
+
 
 end

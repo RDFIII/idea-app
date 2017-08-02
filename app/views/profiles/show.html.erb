@@ -1,0 +1,19 @@
+<h1><%= @profile.username %></h1>
+
+
+<% def find_idea_id(comment) %>
+  <% if comment.commentable_type == "Idea" %>
+    <% return link_to(Idea.find(comment.commentable_id).title, :controller => 'ideas', action: 'show', :id => comment.commentable_id) %>
+  <% else %>
+    <% id = comment.commentable_id %>
+    <% find_idea_id(Comment.find(id)) %>
+  <% end %>
+<% end %>
+
+
+<% @profile.comments.each do |comment| %>
+  <p><%= p comment.user.username %></p>
+  <p><%= p find_idea_id(comment) %></p>
+  <p><%= p comment.text %></p>
+  <p> -------------------------- </p
+<% end %>

@@ -2,5 +2,6 @@
 
 <% @ideas.each do |idea| %>
 
-<p><%= link_to(idea.title, :controller => 'ideas', action: 'show', :id => idea.id) %></p>
+  <p><%= link_to(idea.title, :controller => 'ideas', action: 'show', :id => idea.id) %></p>
+
 <% end %>
